@@ -48,21 +48,32 @@ Run the segmentation script on your local machine:
 python src/01_preprocess.py
 ```
 
-### 2. Upload Data to Cloud
-Upload the `processed_data` directory to your chosen cloud storage:
-
-**For Google Cloud Storage:**
+### 2. Configure AWS CLI (Section 4 Setup)
+Configure AWS CLI with your credentials:
 ```bash
-gsutil -m cp -R processed_data/ gs://your-bucket-name/
+# Check current AWS configuration status
+./scripts/setup_aws.sh
+
+# Configure AWS CLI (you'll be prompted for credentials)
+aws configure
 ```
 
-**For Amazon S3:**
+### 3. Upload Data to AWS S3 (Section 4)
+Upload the processed data to the specified S3 bucket:
 ```bash
-aws s3 sync processed_data/ s3://your-bucket-name/processed_data/
+# Upload processed data to S3 (as specified in plan)
+./scripts/upload_to_s3.sh
 ```
 
-### 3. Train Model on Cloud GPU
+This will execute: `aws s3 sync processed_data/ s3://asr-finetuning-data-2025/processed_data/`
+
+### 4. Train Model on Cloud GPU (Sections 5-8)
 On your cloud VM, download the data and run the training script:
+
+**Download data from S3:**
+```bash
+aws s3 sync s3://asr-finetuning-data-2025/processed_data/ ./processed_data/
+```
 
 **For LoRA fine-tuning:**
 ```bash
