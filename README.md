@@ -14,16 +14,20 @@ This project successfully fine-tunes the OpenAI Whisper-base model on a children
 ### Prerequisites
 - Python 3.10
 - Conda package manager
-- Access to a cloud GPU instance for training
 
 ### Environment Setup
 1. Clone the repository
-2. Create and activate a Conda environment:
+2. **Download the dataset:**
+   - Download the children's speech dataset from: [https://drive.google.com/file/d/1rbnQ2RFLgKBNXqzCp-EHEAh8Z5eKn_r7/view?usp=sharing](https://drive.google.com/file/d/1rbnQ2RFLgKBNXqzCp-EHEAh8Z5eKn_r7/view?usp=sharing)
+   - Extract the downloaded file
+   - Place the extracted `data/` folder in the project root directory
+   - The structure should be: `asr_whisper/data/train/` and `asr_whisper/data/test/`
+3. Create and activate a Conda environment:
    ```bash
    conda create -n asr_env python=3.10
    conda activate asr_env
    ```
-3. Install dependencies:
+4. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
@@ -31,64 +35,77 @@ This project successfully fine-tunes the OpenAI Whisper-base model on a children
 ## Project Structure
 ```
 asr_whisper/
-├── data/                 # Raw data as provided (train/ and test/ subdirectories)
-├── processed_data/       # Segmented audio clips and manifest files
+├── data/                        # Raw dataset (download from Google Drive link above)
+│   ├── train/                   # Training audio files and transcripts
+│   └── test/                    # Test audio files and transcripts
+├── processed_data/              # Generated during preprocessing (segmented audio clips)
 │   ├── train/
 │   └── test/
-├── src/                  # All Python source code
-│   ├── 01_preprocess.py  # Script for data segmentation and preparation
-│   ├── 02_train.py       # Main script for model training and evaluation
-│   └── utils.py          # Helper functions, data collators, etc.
-├── models/               # Saved model checkpoints and LoRA adapters
-├── results/              # Evaluation metrics (e.g., WER scores), logs, learning curves
-├── scripts/              # Optional: Bash scripts for automating experiment runs
-├── README.md             # Comprehensive project documentation
-└── requirements.txt      # Python package dependencies
+├── src/                         # Essential Python scripts
+│   ├── preprocess.py           # Data preprocessing and segmentation
+│   ├── configure_pipeline.py   # Model configuration setup
+│   ├── train_simple.py         # Main training script (quality-optimized LoRA)
+│   ├── finetuning_strategies.py # LoRA implementation
+│   ├── baseline_evaluation.py  # Model evaluation script
+│   ├── comparative_analysis.py # Results analysis
+│   └── utils.py                # Helper functions and data collators
+├── whisper_quality_training/    # Generated model checkpoints and LoRA adapters
+├── evaluation_results.json     # Evaluation metrics and WER scores
+├── comparative_analysis.json   # Comparative analysis results
+├── README.md                   # This documentation
+└── requirements.txt            # Python dependencies
 ```
+
+**Note:** The `src/` directory contains additional development/debug scripts that are not needed for reproduction. The essential scripts for the full pipeline are listed above.
 
 ## Quick Start - Reproduce Results
 
 ### Option 1: Use Pre-trained Model (Recommended)
+*Note: This option requires the pre-trained model checkpoints, which are not included in the repository due to size constraints.*
+
 ```bash
 # Install dependencies
 pip install -r requirements.txt
 
-# Download and evaluate the fine-tuned model
-python src/03_baseline_evaluation.py --finetuned-model-dir whisper_quality_training
+# Download and evaluate the fine-tuned model (if you have the model checkpoints)
+python src/baseline_evaluation.py --finetuned-model-dir whisper_quality_training
 
 # View comparative analysis
-python src/04_comparative_analysis.py
+python src/comparative_analysis.py
 ```
 
 ### Option 2: Full Training Pipeline
 
 #### 1. Data Preprocessing
 ```bash
-# Preprocess the children's speech dataset
-python src/01_preprocess.py
+# Preprocess the children's speech dataset (download data first - see setup instructions)
+python src/preprocess.py
 ```
 
 #### 2. Quality-Optimized Training (Local)
 ```bash
 # Run quality-optimized LoRA fine-tuning (~15 hours on M4 MacBook Pro)
-PYTORCH_ENABLE_MPS_FALLBACK=1 python src/02_train_simple.py
+PYTORCH_ENABLE_MPS_FALLBACK=1 python src/train_simple.py
 ```
 
 #### 3. Evaluation and Analysis
 ```bash
 # Run baseline and fine-tuned model evaluation
-PYTORCH_ENABLE_MPS_FALLBACK=1 python src/03_baseline_evaluation.py
+PYTORCH_ENABLE_MPS_FALLBACK=1 python src/baseline_evaluation.py
 
 # Generate comparative analysis
-python src/04_comparative_analysis.py
+python src/comparative_analysis.py
 ```
 
-## Reproducing Evaluation
-To reproduce the Word Error Rate (WER) reported in the technical report, run the training script with the `--evaluate_only` flag and provide the path or Hugging Face Hub ID to the fine-tuned model:
+## Pipeline Summary
+The complete reproduction pipeline involves **only 4 essential scripts**:
 
-```bash
-python src/02_train.py --strategy lora --evaluate_only --model_checkpoint <model_path_or_hub_id>
-```
+1. **Data Preprocessing:** `src/preprocess.py`
+2. **Model Training:** `src/train_simple.py` 
+3. **Model Evaluation:** `src/baseline_evaluation.py`
+4. **Results Analysis:** `src/comparative_analysis.py`
+
+All other files in `src/` are development artifacts (debug scripts, alternative implementations, etc.) and are not needed for reproduction.
 
 ## Dependencies
 See `requirements.txt` for the complete list of dependencies and their versions.
