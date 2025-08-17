@@ -105,10 +105,10 @@ See `requirements.txt` for the complete list of dependencies and their versions.
 | **Quality-Optimized LoRA** | 784,466 | 1.08% | **105.34%** |
 
 ### Key Achievements
-- ✅ **15.05% WER improvement** over baseline
-- ✅ **99% parameter reduction** (784K vs 73M parameters)
-- ✅ **Quality-optimized training** on consumer hardware
-- ✅ **Successful domain adaptation** for children's speech
+- **15.05% WER improvement** over baseline
+- **99% parameter reduction** (784K vs 73M parameters)
+- **Quality-optimized training** on consumer hardware
+- **Successful domain adaptation** for children's speech
 
 ### Technical Details
 - **LoRA Configuration:** rank=16, alpha=32, dropout=0.05
