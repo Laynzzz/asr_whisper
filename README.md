@@ -56,7 +56,6 @@ asr_whisper/
 └── requirements.txt            # Python dependencies
 ```
 
-**Note:** The `src/` directory contains additional development/debug scripts that are not needed for reproduction. The essential scripts for the full pipeline are listed above.
 
 ## Quick Start - Reproduce Results
 
@@ -89,10 +88,7 @@ See `requirements.txt` for the complete list of dependencies and their versions.
 ## Fine-Tuning Strategies
 
 ### Strategy: LoRA (Low-Rank Adaptation)
-- Parameter-efficient fine-tuning approach
-- Freezes pre-trained weights and adds trainable low-rank matrices
-- Targets query and value projection matrices in attention layers
-- Significantly reduces trainable parameters (~0.5-1% of total)
+
 
 
 ## Results

@@ -178,7 +178,6 @@ def run_quality_training():
         print(f"📊 Training details:")
         print(f"   • Steps per epoch: {steps_per_epoch}")
         print(f"   • Total steps: {total_steps}")
-        print(f"   • Estimated time: {estimated_time_minutes:.1f} minutes")
         print()
         
         # Start training
