@@ -41,3 +41,4 @@ Thumbs.db
 
 # AWS
 *.pem
+processed_data/
