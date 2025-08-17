@@ -97,8 +97,8 @@ See `requirements.txt` for the complete list of dependencies and their versions.
 
 | Model Configuration | Trainable Parameters | Trainable % | Test WER % |
 |---------------------|---------------------|-------------|------------|
-| **Whisper-Base (Baseline)** | 72,888,832 | 100.00% | **124.00%** |
-| **Quality-Optimized LoRA** | 784,466 | 1.08% | **105.34%** |
+| **Whisper-Base (Baseline)** | 73,773,568 | 100.00% | **124.00%** |
+| **Quality-Optimized LoRA** | 1,179,648 | 1.60% | **105.34%** |
 
 ### Key Achievements
 - **15.05% WER improvement** over baseline
