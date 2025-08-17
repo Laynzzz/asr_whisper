@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Audio Segmentation and Preprocessing Script for Children's Speech ASR
-Based on Section 2 of the implementation plan.
+
 
 This script:
 1. Recursively scans data/train/ and data/test/ directories
