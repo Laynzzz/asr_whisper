@@ -1,0 +1,21 @@
+{
+  "baseline": {
+    "model_configuration": "Whisper-Base (Zero-Shot)",
+    "trainable_parameters_count": 72888832,
+    "trainable_parameters_percent": 100.0,
+    "final_test_wer_raw": 1.2400224845418775,
+    "final_test_wer_percent": 124.00224845418775
+  },
+  "finetuned": {
+    "model_configuration": "Quality-Optimized LoRA Fine-Tuned",
+    "trainable_parameters_count": 784466,
+    "trainable_parameters_percent": 1.0762499253657953,
+    "final_test_wer_raw": 1.0534007869589657,
+    "final_test_wer_percent": 105.34007869589657
+  },
+  "improvement": {
+    "wer_reduction": 0.1866216975829118,
+    "wer_improvement_percent": 15.04986400725295,
+    "parameter_efficiency": 92.91522130978271
+  }
+}

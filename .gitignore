@@ -1,0 +1,43 @@
+# Data files (too large for GitHub)
+processed_data/
+data/
+whisper_quality_training/
+*.wav
+*.mp3
+
+# Training outputs
+*.log
+mps_smoke_test/
+smoke_test_lora/
+submission_package/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environment
+.env
+.venv
+env/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# AWS
+*.pem

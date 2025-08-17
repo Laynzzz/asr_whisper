@@ -1,0 +1,36 @@
+{
+  "section": "8.4 Comparative Analysis",
+  "table_1_comparative_performance": [
+    {
+      "model_configuration": "openai/whisper-base (Baseline)",
+      "trainable_parameters_count": 72888832,
+      "trainable_parameters_percent": 100.0,
+      "final_test_wer_percent": 124.00224845418775
+    },
+    {
+      "model_configuration": "Fine-tuned (LoRA, r=16)",
+      "trainable_parameters_count": 784466,
+      "trainable_parameters_percent": 1.0762499253657953,
+      "final_test_wer_percent": 105.34007869589657
+    },
+    {
+      "model_configuration": "Fine-tuned (Selective Layers)",
+      "trainable_parameters_count": "Not Implemented",
+      "trainable_parameters_percent": "Not Implemented",
+      "final_test_wer_percent": "Not Implemented"
+    }
+  ],
+  "analysis_summary": {
+    "baseline_wer_percent": 124.00224845418775,
+    "lora_wer_percent": 105.34007869589657,
+    "wer_improvement_percent": 15.04986400725295,
+    "parameter_efficiency": 92.91522130978271,
+    "training_time_hours": 15,
+    "training_strategy": "Quality-optimized LoRA (rank=16, 5 epochs)"
+  },
+  "implementation_status": {
+    "baseline_evaluation": "\u2705 Completed",
+    "lora_fine_tuning": "\u2705 Completed",
+    "selective_layer_tuning": "\u274c Not Implemented"
+  }
+}
