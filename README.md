@@ -60,21 +60,7 @@ asr_whisper/
 
 ## Quick Start - Reproduce Results
 
-### Option 1: Use Pre-trained Model (Recommended)
-*Note: This option requires the pre-trained model checkpoints, which are not included in the repository due to size constraints.*
-
-```bash
-# Install dependencies
-pip install -r requirements.txt
-
-# Download and evaluate the fine-tuned model (if you have the model checkpoints)
-python src/baseline_evaluation.py --finetuned-model-dir whisper_quality_training
-
-# View comparative analysis
-python src/comparative_analysis.py
-```
-
-### Option 2: Full Training Pipeline
+### Full Training Pipeline
 
 #### 1. Data Preprocessing
 ```bash
@@ -96,16 +82,6 @@ PYTORCH_ENABLE_MPS_FALLBACK=1 python src/baseline_evaluation.py
 # Generate comparative analysis
 python src/comparative_analysis.py
 ```
-
-## Pipeline Summary
-The complete reproduction pipeline involves **only 4 essential scripts**:
-
-1. **Data Preprocessing:** `src/preprocess.py`
-2. **Model Training:** `src/train_simple.py` 
-3. **Model Evaluation:** `src/baseline_evaluation.py`
-4. **Results Analysis:** `src/comparative_analysis.py`
-
-All other files in `src/` are development artifacts (debug scripts, alternative implementations, etc.) and are not needed for reproduction.
 
 ## Dependencies
 See `requirements.txt` for the complete list of dependencies and their versions.
@@ -140,4 +116,3 @@ See `requirements.txt` for the complete list of dependencies and their versions.
 - **Training:** 5 epochs, cosine LR scheduler, MPS acceleration
 - **Dataset:** 4,983 train + 1,197 test children's speech samples
 
-```
