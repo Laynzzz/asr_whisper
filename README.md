@@ -87,7 +87,7 @@ See `requirements.txt` for the complete list of dependencies and their versions.
 
 ## Fine-Tuning Strategies
 
-### Strategy: LoRA (Low-Rank Adaptation)
+### LoRA (Low-Rank Adaptation)
 
 
 
@@ -102,9 +102,7 @@ See `requirements.txt` for the complete list of dependencies and their versions.
 
 ### Key Achievements
 - **15.05% WER improvement** over baseline
-- **99% parameter reduction** (784K vs 73M parameters)
-- **Quality-optimized training** on consumer hardware
-- **Successful domain adaptation** for children's speech
+
 
 ### Technical Details
 - **LoRA Configuration:** rank=16, alpha=32, dropout=0.05
