@@ -1,11 +1,5 @@
 #!/usr/bin/env python3
-"""
-Section 8.3: Baseline and Final Evaluation
-Implements the three-way comparison as specified in the plan:
-1. Baseline (Zero-Shot) Evaluation of original Whisper model
-2. Fine-Tuned Model Evaluation comparison
-3. Comparative Analysis table generation
-"""
+
 
 import torch
 import sys
@@ -27,7 +21,7 @@ logger = logging.getLogger(__name__)
 
 class BaselineEvaluation:
     """
-    Section 8.3: Baseline and Final Evaluation
+    Baseline and Final Evaluation
     
     Implements the three-way comparison as specified in the plan:
     - Baseline (Zero-Shot) Evaluation
@@ -68,7 +62,7 @@ class BaselineEvaluation:
         Baseline (Zero-Shot) Evaluation: 
         Evaluate original openai/whisper-base model on test set
         """
-        self.logger.info("🔍 Section 8.3.1: Baseline (Zero-Shot) Evaluation")
+        self.logger.info("Baseline (Zero-Shot) Evaluation")
         self.logger.info("Evaluating original openai/whisper-base model")
         self.logger.info("=" * 60)
         
@@ -127,7 +121,7 @@ class BaselineEvaluation:
         Fine-Tuned Model Evaluation:
         Evaluate the best-performing checkpoint on test set
         """
-        self.logger.info("🎯 Section 8.3.2: Fine-Tuned Model Evaluation")
+        self.logger.info("Fine-Tuned Model Evaluation")
         self.logger.info("Evaluating quality-optimized LoRA fine-tuned model")
         self.logger.info("=" * 60)
         
@@ -196,10 +190,10 @@ class BaselineEvaluation:
     
     def generate_comparative_analysis(self, baseline_results, finetuned_results):
         """
-        Section 8.3.3: Generate Comparative Analysis Table
+        Generate Comparative Analysis Table
         As specified in plan: Table 1: Comparative Performance Analysis
         """
-        self.logger.info("📋 Section 8.3.3: Comparative Analysis")
+        self.logger.info("Comparative Analysis")
         self.logger.info("Generating comparison table as specified in plan")
         self.logger.info("=" * 60)
         
@@ -270,9 +264,9 @@ class BaselineEvaluation:
     
     def run_complete_evaluation(self):
         """
-        Run the complete Section 8.3 evaluation process
+        Run the complete evaluation process
         """
-        self.logger.info("🚀 Section 8.3: Baseline and Final Evaluation")
+        self.logger.info("🚀 : Baseline and Final Evaluation")
         self.logger.info("Three-way comparison as specified in plan")
         self.logger.info("=" * 70)
         
@@ -290,11 +284,11 @@ class BaselineEvaluation:
             comparison_data = self.generate_comparative_analysis(baseline_results, finetuned_results)
             
             self.logger.info("\n" + "=" * 70)
-            self.logger.info("🎉 SECTION 8.3 EVALUATION COMPLETED SUCCESSFULLY!")
+            self.logger.info("🎉   EVALUATION COMPLETED SUCCESSFULLY!")
             self.logger.info("=" * 70)
             self.logger.info("✅ All evaluations completed as specified in plan")
             self.logger.info("📊 Comparative analysis table generated")
-            self.logger.info("📄 Results saved for Section 8.4 analysis")
+ 
             
             return {
                 "baseline": baseline_results,
@@ -312,7 +306,7 @@ def main():
     """Main function to run baseline and final evaluation"""
     import argparse
     
-    parser = argparse.ArgumentParser(description="Section 8.3: Baseline and Final Evaluation")
+    parser = argparse.ArgumentParser(description="Baseline and Final Evaluation")
     parser.add_argument("--data-dir", default="processed_data",
                       help="Directory containing processed data")
     parser.add_argument("--finetuned-model-dir", default="whisper_quality_training",
@@ -330,11 +324,10 @@ def main():
     results = evaluator.run_complete_evaluation()
     
     if results:
-        print(f"\n🎉 Section 8.3 completed successfully!")
-        print(f"📊 Ready for Section 8.4: Comparative Analysis")
+        print(f"\ncompleted successfully!")
         return 0
     else:
-        print(f"\n❌ Section 8.3 failed!")
+        print(f"\nfailed!")
         return 1
 
 if __name__ == "__main__":

@@ -1,9 +1,4 @@
 #!/usr/bin/env python3
-"""
-Section 6: Configuring the Whisper Fine-Tuning Pipeline
-This script establishes the core training infrastructure using Hugging Face libraries
-as specified in the plan.
-"""
 
 import os
 import sys
@@ -41,13 +36,13 @@ def setup_logging():
 
 class WhisperPipelineConfigurator:
     """
-    Section 6: Whisper Fine-Tuning Pipeline Configuration
+   Whisper Fine-Tuning Pipeline Configuration
     
-    This class implements all components specified in Section 6:
-    6.1 Loading the Preprocessed Corpus
-    6.2 Initializing the Whisper Processor  
-    6.3 Data Processing and Collator Implementation
-    6.4 Defining the Evaluation Metric
+    This class implements all components:
+    1 Loading the Preprocessed Corpus
+    2 Initializing the Whisper Processor  
+    3 Data Processing and Collator Implementation
+    4 Defining the Evaluation Metric
     """
     
     def __init__(self, 
@@ -77,18 +72,18 @@ class WhisperPipelineConfigurator:
         self.data_collator = None
         self.wer_metric = None
         
-        self.logger.info(f"🚀 Section 6: Configuring Whisper Fine-Tuning Pipeline")
+        self.logger.info(f"Configuring Whisper Fine-Tuning Pipeline")
         self.logger.info(f"Model: {model_name}")
         self.logger.info(f"Data directory: {data_dir}")
         
     def load_preprocessed_corpus(self) -> DatasetDict:
         """
-        Section 6.1: Loading the Preprocessed Corpus
+        Loading the Preprocessed Corpus
         
         Load the segmented audio-text pairs from the local processed_data/ 
         directory into a DatasetDict object using the "audiofolder" builder.
         """
-        self.logger.info("📂 Section 6.1: Loading the Preprocessed Corpus")
+        self.logger.info("Loading the Preprocessed Corpus")
         self.logger.info("Using 'audiofolder' builder as specified in plan")
         
         try:
@@ -129,13 +124,13 @@ class WhisperPipelineConfigurator:
     
     def initialize_whisper_processor(self) -> WhisperProcessor:
         """
-        Section 6.2: Initializing the Whisper Processor
+        Initializing the Whisper Processor
         
         A WhisperProcessor conveniently wraps the feature extractor and tokenizer.
         - Feature Extractor: Converts raw 16kHz audio into log-Mel spectrograms
         - Tokenizer: Converts text transcriptions into token IDs
         """
-        self.logger.info("🎛️ Section 6.2: Initializing the Whisper Processor")
+        self.logger.info("Initializing the Whisper Processor")
         
         try:
             # Initialize processor as specified in plan
@@ -164,12 +159,12 @@ class WhisperPipelineConfigurator:
     
     def setup_data_processing(self) -> DataCollatorSpeechSeq2SeqWithPadding:
         """
-        Section 6.3: Data Processing and Collator Implementation
+        Data Processing and Collator Implementation
         
         - Dataset Mapping: prepare_dataset function generates input_features and labels
         - Data Collator: DataCollatorSpeechSeq2SeqWithPadding handles dynamic padding
         """
-        self.logger.info("🔄 Section 6.3: Data Processing and Collator Implementation")
+        self.logger.info("Data Processing and Collator Implementation")
         
         if self.processor is None:
             raise ValueError("Processor must be initialized before setting up data processing")
@@ -229,12 +224,12 @@ class WhisperPipelineConfigurator:
     
     def define_evaluation_metric(self):
         """
-        Section 6.4: Defining the Evaluation Metric
+        efining the Evaluation Metric
         
         The primary metric is Word Error Rate (WER). A compute_metrics function 
         will be defined to calculate WER during evaluation using the evaluate library.
         """
-        self.logger.info("📊 Section 6.4: Defining the Evaluation Metric")
+        self.logger.info("📊 Defining the Evaluation Metric")
         
         try:
             # Load WER metric using evaluate library as specified
@@ -279,17 +274,17 @@ class WhisperPipelineConfigurator:
     
     def configure_complete_pipeline(self) -> Dict[str, Any]:
         """
-        Complete Section 6 configuration pipeline.
+        Complete configuration pipeline.
         
         Returns all configured components for training.
         """
         self.logger.info("🔧 Configuring complete Whisper fine-tuning pipeline...")
         
-        # Execute all Section 6 steps in order
-        datasets = self.load_preprocessed_corpus()          # 6.1
-        processor = self.initialize_whisper_processor()     # 6.2  
-        data_collator = self.setup_data_processing()        # 6.3
-        compute_metrics = self.define_evaluation_metric()   # 6.4
+        # Execute all steps in order
+        datasets = self.load_preprocessed_corpus()          # 1
+        processor = self.initialize_whisper_processor()     # 2  
+        data_collator = self.setup_data_processing()        # 3
+        compute_metrics = self.define_evaluation_metric()   # 4
         
         # Load the model
         self.logger.info("Loading Whisper model...")
@@ -309,8 +304,7 @@ class WhisperPipelineConfigurator:
             "feature_extractor": processor.feature_extractor
         }
         
-        self.logger.info("🎯 Section 6 Complete - Pipeline Configured Successfully!")
-        self.logger.info("All components ready for Section 7: Fine-tuning strategies")
+        self.logger.info("Complete - Pipeline Configured Successfully!")
         
         return pipeline_components
 
@@ -318,7 +312,7 @@ def main():
     """Main function to test the pipeline configuration."""
     import argparse
     
-    parser = argparse.ArgumentParser(description="Section 6: Configure Whisper Fine-tuning Pipeline")
+    parser = argparse.ArgumentParser(description="Configure Whisper Fine-tuning Pipeline")
     parser.add_argument("--model_name", default="openai/whisper-base", help="Whisper model to use")
     parser.add_argument("--data_dir", default="processed_data", help="Data directory")
     parser.add_argument("--test_only", action="store_true", help="Run configuration test only")
@@ -335,8 +329,7 @@ def main():
     components = configurator.configure_complete_pipeline()
     
     if args.test_only:
-        print("✅ Pipeline configuration test completed successfully!")
-        print("All Section 6 components are working correctly.")
+        print("Pipeline configuration test completed successfully!")
     
     return components
 

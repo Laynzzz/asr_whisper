@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Utility functions for Whisper fine-tuning on children's speech.
-Implements the data collator and preprocessing functions from Section 5 of the plan.
+Implements the data collator and preprocessing functions
 """
 
 import torch
@@ -17,7 +17,7 @@ class DataCollatorSpeechSeq2SeqWithPadding:
     Data collator for speech-to-text tasks with padding.
     
     This collator handles the different padding requirements for input features 
-    (spectrograms) and labels (token IDs) as specified in Section 5.3 of the plan.
+    (spectrograms) and labels (token IDs)
     """
     processor: Any
 
@@ -47,8 +47,7 @@ def prepare_dataset(batch, processor):
     """
     Prepare dataset function for mapping over the dataset.
     
-    This function applies the feature extractor to audio and tokenizer to text,
-    as specified in Section 5.3 of the plan.
+    This function applies the feature extractor to audio and tokenizer to text
     
     Args:
         batch: A batch from the dataset
@@ -73,7 +72,7 @@ def prepare_dataset(batch, processor):
 
 def apply_children_speech_preprocessing(dataset, target_sampling_rate=16000):
     """
-    Apply specialized preprocessing for children's speech as specified in Section 2.2.
+    Apply specialized preprocessing for children's speech.
     
     This includes:
     1. Resampling to 16kHz
@@ -131,7 +130,7 @@ def create_speed_perturbation_dataset(dataset, speed_factors=[0.9, 1.1]):
     """
     Create speed-perturbed versions of the dataset for data augmentation.
     
-    As recommended in Section 2.2, this creates additional copies of training data
+    As recommended this creates additional copies of training data
     with slightly different speeds to improve model robustness and simulate
     variations in children's speaking rates.
     
@@ -192,7 +191,7 @@ def create_speed_perturbation_dataset(dataset, speed_factors=[0.9, 1.1]):
 
 def compute_metrics(pred, processor, wer_metric):
     """
-    Compute evaluation metrics (WER) as specified in Section 5.4.
+    Compute evaluation metrics (WER)
     
     Args:
         pred: Predictions from the model

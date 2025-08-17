@@ -1,12 +1,4 @@
 #!/usr/bin/env python3
-"""
-Section 8.4: Comparative Analysis
-Strictly following the plan: compile results into a table to compare baseline, LoRA, 
-and selective tuning methods on trainable parameters and final test WER.
-
-Note: We only have baseline and LoRA results (selective tuning was not implemented),
-so we'll create the table with available data and note the missing selective tuning results.
-"""
 
 import json
 import logging
@@ -18,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 class ComparativeAnalysis:
     """
-    Section 8.4: Comparative Analysis
+    Comparative Analysis
     
     Compiles results into Table 1: Comparative Performance Analysis
     as specified in the plan.
@@ -29,11 +21,11 @@ class ComparativeAnalysis:
         self.logger = logger
     
     def load_evaluation_results(self):
-        """Load the evaluation results from Section 8.3"""
-        self.logger.info("📊 Loading evaluation results from Section 8.3...")
+        """Load the evaluation results"""
+        self.logger.info("📊 Loading evaluation results...")
         
         if not Path(self.results_file).exists():
-            raise FileNotFoundError(f"Results file {self.results_file} not found. Please run Section 8.3 first.")
+            raise FileNotFoundError(f"Results file {self.results_file} not found.")
         
         with open(self.results_file, 'r') as f:
             results = json.load(f)
@@ -44,9 +36,8 @@ class ComparativeAnalysis:
     def generate_comparative_table(self, results):
         """
         Generate Table 1: Comparative Performance Analysis
-        As specified in Section 8.4 of the plan
         """
-        self.logger.info("📋 Section 8.4: Comparative Analysis")
+        self.logger.info("Comparative Analysis")
         self.logger.info("Compiling results into comparison table as specified in plan")
         self.logger.info("=" * 70)
         
@@ -84,7 +75,6 @@ class ComparativeAnalysis:
         
         print("\n" + "=" * 100)
         print("📊 TABLE 1: COMPARATIVE PERFORMANCE ANALYSIS")
-        print("   (Section 8.4 - As specified in plan.md)")
         print("=" * 100)
         
         # Table header
@@ -165,7 +155,7 @@ class ComparativeAnalysis:
     def save_analysis_report(self, table_data, results):
         """Save the comparative analysis report"""
         report_data = {
-            "section": "8.4 Comparative Analysis",
+            "section": "Comparative Analysis",
             "table_1_comparative_performance": table_data,
             "analysis_summary": {
                 "baseline_wer_percent": results["baseline"]["final_test_wer_percent"],
@@ -182,7 +172,7 @@ class ComparativeAnalysis:
             }
         }
         
-        report_file = "section_8_4_comparative_analysis.json"
+        report_file = "comparative_analysis.json"
         with open(report_file, 'w') as f:
             json.dump(report_data, f, indent=2)
         
@@ -191,14 +181,14 @@ class ComparativeAnalysis:
     
     def run_comparative_analysis(self):
         """
-        Run the complete Section 8.4 comparative analysis
+        Run the complete comparative analysis
         """
-        self.logger.info("🚀 Section 8.4: Comparative Analysis")
+        self.logger.info("Comparative Analysis")
         self.logger.info("Compiling results as specified in plan.md")
         self.logger.info("=" * 70)
         
         try:
-            # Load evaluation results from Section 8.3
+            # Load evaluation results
             results = self.load_evaluation_results()
             
             # Generate comparative table
@@ -214,13 +204,11 @@ class ComparativeAnalysis:
             report_file = self.save_analysis_report(table_data, results)
             
             self.logger.info("=" * 70)
-            self.logger.info("🎉 SECTION 8.4 COMPARATIVE ANALYSIS COMPLETED!")
+            self.logger.info("COMPARATIVE ANALYSIS COMPLETED!")
             self.logger.info("=" * 70)
             self.logger.info("✅ Table 1: Comparative Performance Analysis generated")
             self.logger.info("✅ Analysis summary provided")
             self.logger.info(f"✅ Report saved to {report_file}")
-            self.logger.info("📋 Ready for Section 9: Final Submission and Reproducibility Package")
-            
             return {
                 "table_data": table_data,
                 "report_file": report_file,
@@ -237,9 +225,9 @@ def main():
     """Main function to run comparative analysis"""
     import argparse
     
-    parser = argparse.ArgumentParser(description="Section 8.4: Comparative Analysis")
+    parser = argparse.ArgumentParser(description="Comparative Analysis")
     parser.add_argument("--results-file", default="evaluation_results.json",
-                      help="Results file from Section 8.3")
+                      help="Results file")
     
     args = parser.parse_args()
     
@@ -250,13 +238,12 @@ def main():
     result = analyzer.run_comparative_analysis()
     
     if result:
-        print(f"\n🎉 Section 8.4 completed successfully!")
+        print(f"\ncompleted successfully!")
         print(f"📊 Comparative analysis table generated")
         print(f"📄 Report saved: {result['report_file']}")
-        print(f"🚀 Ready for Section 9: Final Submission")
         return 0
     else:
-        print(f"\n❌ Section 8.4 failed!")
+        print(f"\nfailed!")
         return 1
 
 if __name__ == "__main__":

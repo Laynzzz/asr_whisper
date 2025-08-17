@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Section 8.2: Simplified Full Training Execution
+ Simplified Full Training Execution
 Fixed version without recursion issues, using the successful smoke test approach.
 """
 
@@ -30,7 +30,7 @@ logger = logging.getLogger(__name__)
 def run_quality_training():
     """Run quality-optimized training based on successful smoke test approach"""
     
-    print("🚀 Section 8.2: Quality-Optimized Full Training")
+    print("Quality-Optimized Full Training")
     print("=" * 55)
     print("Using successful smoke test approach with quality hyperparameters")
     print()
@@ -233,7 +233,7 @@ def run_quality_training():
 if __name__ == "__main__":
     success = run_quality_training()
     if success:
-        print("🚀 Ready for Section 8.3: Baseline and Final Evaluation!")
+        print("🚀 Ready for Baseline and Final Evaluation!")
     else:
         print("❌ Training failed - check logs for details")
     exit(0 if success else 1)
