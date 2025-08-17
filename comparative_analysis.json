@@ -1,5 +1,5 @@
 {
-  "section": "8.4 Comparative Analysis",
+  "section": "Comparative Analysis",
   "table_1_comparative_performance": [
     {
       "model_configuration": "openai/whisper-base (Baseline)",
