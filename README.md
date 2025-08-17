@@ -83,26 +83,6 @@ PYTORCH_ENABLE_MPS_FALLBACK=1 python src/03_baseline_evaluation.py
 python src/04_comparative_analysis.py
 ```
 
-## Alternative: Cloud Training Workflow
-
-### 1. Configure AWS CLI
-```bash
-./scripts/setup_aws.sh
-aws configure
-```
-
-### 2. Upload Data to S3
-```bash
-./scripts/upload_to_s3.sh
-```
-
-### 3. Cloud GPU Training
-```bash
-# On AWS EC2 instance
-aws s3 sync s3://asr-finetuning-data-2025/processed_data/ ./processed_data/
-python src/02_train_simple.py
-```
-
 ## Reproducing Evaluation
 To reproduce the Word Error Rate (WER) reported in the technical report, run the training script with the `--evaluate_only` flag and provide the path or Hugging Face Hub ID to the fine-tuned model:
 
@@ -115,17 +95,12 @@ See `requirements.txt` for the complete list of dependencies and their versions.
 
 ## Fine-Tuning Strategies
 
-### Strategy A: LoRA (Low-Rank Adaptation)
+### Strategy: LoRA (Low-Rank Adaptation)
 - Parameter-efficient fine-tuning approach
 - Freezes pre-trained weights and adds trainable low-rank matrices
 - Targets query and value projection matrices in attention layers
 - Significantly reduces trainable parameters (~0.5-1% of total)
 
-### Strategy B: Selective Layer Fine-Tuning
-- Unfreezes specific layers for full fine-tuning
-- Targets top encoder layers and all decoder layers
-- More computationally intensive but allows expressive updates
-- Approximately 30-40% of parameters trainable
 
 ## Results
 
@@ -148,16 +123,4 @@ See `requirements.txt` for the complete list of dependencies and their versions.
 - **Training:** 5 epochs, cosine LR scheduler, MPS acceleration
 - **Dataset:** 4,983 train + 1,197 test children's speech samples
 
-## Model Repository
-The fine-tuned model and LoRA adapters are available at:
-**Hugging Face Hub:** `laynzzz/whisper-base-ft-children-speech`
-
-## Citation
-```bibtex
-@misc{whisper-children-speech-2025,
-  title={Quality-Optimized LoRA Fine-Tuning of Whisper for Children's Speech Recognition},
-  author={ASR Whisper Fine-Tuning Project},
-  year={2025},
-  url={https://huggingface.co/laynzzz/whisper-base-ft-children-speech}
-}
 ```
